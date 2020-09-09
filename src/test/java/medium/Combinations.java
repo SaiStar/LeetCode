@@ -32,6 +32,7 @@ public class Combinations {
     }
 
     List<List<Integer>> ans = new ArrayList<>();
+    //Deque:双端队列
     Deque<Integer> temp = new ArrayDeque<>();
     public List<List<Integer>> combine(int n, int k) {
         if (k <= 0 && n < k){
@@ -75,13 +76,13 @@ public class Combinations {
 //            System.out.println("递归之后："+temp.toString());
         }
 
-        for (int i = cur;i <= n;i++){
-            temp.addLast(i);
-//            System.out.println("递归之前："+temp.toString());
-            back(i+1,n,k);
-            temp.removeLast();
-//            System.out.println("递归之后："+temp.toString());
-        }
+//        for (int i = cur;i <= n;i++){
+//            temp.addLast(i);
+////            System.out.println("递归之前："+temp.toString());
+//            back(i+1,n,k);
+//            temp.removeLast();
+////            System.out.println("递归之后："+temp.toString());
+//        }
     }
 
 }
