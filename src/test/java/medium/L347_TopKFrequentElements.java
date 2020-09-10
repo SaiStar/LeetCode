@@ -13,7 +13,7 @@ import java.util.PriorityQueue;
  * @create 2020-09-07
  */
 @SpringBootTest
-public class TopKFrequentElements {
+public class L347_TopKFrequentElements {
     /**
      * 给定一个非空的整数数组，返回其中出现频率前 k 高的元素。
      *

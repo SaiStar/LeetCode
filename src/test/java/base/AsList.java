@@ -16,6 +16,17 @@ import java.util.stream.Collectors;
 public class AsList {
 
     @Test
+    public void dequeAsStack(){
+        Deque<Integer> deque = new LinkedList<>();
+        deque.push(2);
+        deque.push(1);
+        deque.push(3);
+        System.out.println(deque);
+        System.out.println(deque.peek());
+        System.out.println(deque.pop());
+        System.out.println(deque);
+    }
+    @Test
     public void arrayAsList(){
         String[] str = new String[]{"u","i"};
         List list = Arrays.asList(str);
@@ -123,7 +134,7 @@ public class AsList {
 //            }
 //        }
 
-         //不要在foreach循环里进行元素的remove/add操作。remove元素使用Iterator方式，如果并发操作，需要对Iterator对象加锁
+         //不要在List 元素的 foreach循环里进行元素的remove/add操作。remove元素使用Iterator方式，如果并发操作，需要对Iterator对象加锁
          Iterator<String> iterator = list.iterator();
          while (iterator.hasNext()){
              String item = iterator.next();

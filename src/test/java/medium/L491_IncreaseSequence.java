@@ -11,7 +11,7 @@ import java.util.List;
  * @create 2020-08-25
  */
 @SpringBootTest
-public class IncreaseSequence {
+public class L491_IncreaseSequence {
 
     //给定一个整型数组, 你的任务是找到所有该数组的递增子序列，递增子序列的长度至少是2。
     /*
