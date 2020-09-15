@@ -1,5 +1,6 @@
 package medium;
 
+import com.sun.javafx.logging.PulseLogger;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -64,6 +65,51 @@ public class L94_BinaryTreeInorderTraversal {
                     deque.push(treeNode.left);
                 }
             }
+        }
+        return ans;
+    }
+
+
+    //递归
+    @Test
+    public void DiGui(){
+        TreeNode root = new TreeNode(1);
+        root.right = new TreeNode(2);
+        root.right.left = new TreeNode(3);
+        List<Integer> ans = new ArrayList<>();
+        back(root,ans);
+        System.out.println(ans);
+    }
+    public void back(TreeNode t,List<Integer> ans){
+        if(null == t){
+            return;
+        }
+        back(t.left,ans);
+        ans.add(t.val);
+        back(t.right,ans);
+    }
+
+    //非递归
+    @Test
+    public void FeiDiGui(){
+        TreeNode root = new TreeNode(1);
+        root.right = new TreeNode(2);
+        root.right.left = new TreeNode(3);
+        List<Integer> ans = new ArrayList<>();
+        System.out.println(zhan(root));
+    }
+    public List<Integer> zhan(TreeNode root){
+        List<Integer> ans = new ArrayList<>();
+        Deque<TreeNode> path = new LinkedList<>();
+        TreeNode pNode = root;
+        while (null != pNode || !path.isEmpty()){
+            while (null != pNode){
+                path.push(pNode);
+                pNode = pNode.left;
+            }
+            pNode = path.pop();
+            ans.add(new Integer(pNode.val));
+            pNode = pNode.right;
         }
         return ans;
     }
