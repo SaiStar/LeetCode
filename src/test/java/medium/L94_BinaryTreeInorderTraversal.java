@@ -37,7 +37,10 @@ public class L94_BinaryTreeInorderTraversal {
         root.right = new TreeNode(2);
         root.right.left = new TreeNode(3);
 
-        System.out.println(inorderTraversal(root));
+//        System.out.println(inorderTraversal(root));
+//        System.out.println(remarkInorder(root));
+//        System.out.println(stackPreorder(root));
+        System.out.println(stackPostorder(root));
     }
     //标记法
     public List<Integer> inorderTraversal(TreeNode root) {
@@ -110,6 +113,72 @@ public class L94_BinaryTreeInorderTraversal {
             pNode = path.pop();
             ans.add(new Integer(pNode.val));
             pNode = pNode.right;
+        }
+        return ans;
+    }
+
+    public List<Integer> remarkInorder(TreeNode root){
+
+        List<Integer> ans = new ArrayList<>();
+        Deque<Object> path = new LinkedList<>();
+        if (root == null)
+            return ans;
+        path.push(root);
+        while (!path.isEmpty()){
+            Object pop = path.pop();
+            if(pop instanceof Integer){
+                ans.add((Integer) pop);
+            }else {
+                TreeNode cur = (TreeNode)pop;
+                if (cur.right != null){
+                    path.push(cur);
+                }
+                path.push(new Integer(cur.val));
+                if (cur.left != null){
+                    path.push(cur.left);
+                }
+            }
+        }
+        return ans;
+    }
+
+    public List<Integer> stackPreorder(TreeNode root){
+        List<Integer> ans = new ArrayList<>();
+        Deque<TreeNode> path = new ArrayDeque<>();
+        TreeNode pNode = root;
+        while (!path.isEmpty() || pNode != null){
+            while (pNode != null){
+                path.push(pNode);
+                ans.add(pNode.val);
+                pNode = pNode.left;
+            }
+            pNode = path.pop();
+
+            pNode = pNode.right;
+        }
+        return ans;
+    }
+
+    public List<Integer> stackPostorder(TreeNode root){
+        List<Integer> ans = new ArrayList<>();
+        Deque<TreeNode> path = new ArrayDeque<>();
+        TreeNode pNode = root;
+        TreeNode visited = null;
+        while (!path.isEmpty() || pNode != null){
+            while (pNode != null){
+                path.push(pNode);
+                pNode = pNode.left;
+            }
+            pNode = path.peek();
+            //如果右节点为Null 或者已经被访问过，则出栈；否则继续向下访问
+            if (pNode.right == null || pNode.right == visited){
+                pNode = path.pop();
+                ans.add(pNode.val);
+                visited = pNode;
+                pNode = null;
+            }else {
+                pNode = pNode.right;
+            }
         }
         return ans;
     }
